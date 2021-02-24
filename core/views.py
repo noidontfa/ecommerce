@@ -2,6 +2,7 @@ from .models import Product
 from django.shortcuts import render
 from django.views.generic import View
 # Create your views here.
+from .forms import CartForm
 def index(request):
 
     return render(request,'home-page.html')
@@ -23,15 +24,22 @@ class ProductDetail(View):
 
     def get(self, request, *args, **kwargs):
         slug = kwargs.get('slug')
-        print(slug)
         product = Product.objects.filter(slug=slug)
+        
         if product.exists:
             product = product[0]
+            form = CartForm(initial={
+                'product': product,
+                'user_other': request.user
+            })
             context = {
-                'product': product
+                'product': product,
+                'form': form
             }
             return render(request, 'product-page.html', context=context) 
 
 
     def post(self, request, *args, **kwargs):
         pass
+
+

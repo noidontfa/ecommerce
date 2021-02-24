@@ -2,7 +2,7 @@
 
 
 {% block content %}
-  <main class="mt-5 pt-4">
+  <main class="mt-5 pt-5">
     <div class="container dark-grey-text mt-5">
 
       <!--Grid row-->
@@ -30,20 +30,22 @@
 
             <p class="lead">
               <span class="mr-1">
-                <del>${{ product.display_price }}</del>
+              {% if product.discount_price %}
+                <del>${{ product.discount_price }}</del>
+              {% endif %}
+                
               </span>
-              <span>${{ product.display_price }}</span>
+              <span>${{ product.price }}</span>
             </p>
 
             <p class="lead font-weight-bold">Description</p>
 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa
-              sint voluptatibus!
-              Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente.</p>
+            <p>{{ product.description }}</p>
 
             <form class="d-flex justify-content-left">
               <!-- Default input -->
-              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
+              {{form}}
+              {% comment %} <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px"> {% endcomment %}
               <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
                 <i class="fas fa-shopping-cart ml-1"></i>
               </button>
