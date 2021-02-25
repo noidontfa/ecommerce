@@ -146,3 +146,4 @@ SITE_ID = 1
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = '/'
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'

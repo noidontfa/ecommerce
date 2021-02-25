@@ -6,7 +6,7 @@ app_name = 'core'
 
 
 urlpatterns = [
-    path('',HomePage.as_view()),
+    path('',HomePage.as_view(),name='home-page'),
     path('detail/<slug>',ProductDetail.as_view(),name='product-detail')
 ]
 
