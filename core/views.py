@@ -67,3 +67,33 @@ class ProductDetail(View):
         }))
 
 
+class CartView(View):
+
+    def get(self, request, *args, **kwargs):
+
+        cart_items = Cart.objects.filter(
+           user_other=request.user 
+        )
+
+        if not cart_items.exists():
+            cart_items = []
+
+        context = {
+            'cart_items': cart_items
+        }   
+        return render(request, 'cart-view.html', context=context)
+
+
+class CheckOutView(View):
+
+    def get(self, request, *args, **kwargs):
+        # `cart_items = Cart.objects.filter(
+        #    user_other=request.user 
+        # )
+
+        # if not cart_items.exists():
+        #     cart_items = []
+
+        context = {
+        }   
+        return render(request, 'checkout-page.html', context=context)

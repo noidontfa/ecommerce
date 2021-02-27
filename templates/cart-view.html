@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load cart_template_tags %}
+
+
+{% block content %}
+    <main class="pt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 white rounded shadow-sm">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width: 5%">#</th>
+                                <th scope="col" style="width: 75%">Product name</th>
+                                <th scope="col" style="width: 10%">Price</th>
+                                <th scope="col" style="width: 10%">Quantity</th>
+                                <th scope="col" style="width: 10%">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                            {% for item in cart_items %}
+                             <tr>
+                                <th scope="row">{{ forloop.counter}}</th>
+                                <td>{{ item.product.name }}</td>
+                                <td>{{ item.product.display_price }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.get_product_price }}</td>
+                            </tr>
+                            {% endfor %}
+
+                            <tr>
+                                <th scope="row" colspan="4">Total:</th>
+                                <td>{{ user|get_price_cart}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-12 white rounded shadow-sm ">
+                    <a href="{% url 'core:checkout' %}" class="btn btn-primary float-right">
+                        Direct To Checkout Payment
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock content %}
